@@ -1,0 +1,50 @@
+---
+metadata:
+    name: Example (with nginx and PHP-FPM)
+    description: A profile that compiles and configures nginx, then configures
+                 PHP with the FastCGI Process Manager.
+components:
+    - application: nginx
+      version: 1.0.4
+      paths:
+          prefix: /usr/local/nginx
+          # All other paths are the defaults - check /src/applications/nginx/py
+          # for the gory details
+      user: www-server
+      group: www-server
+      modules:
+          - http
+          - http-auth-basic
+          - http-autoindex
+          - http-browser
+          - http-charset
+          - http-fastcgi
+          - http-gzip
+          - http-proxy
+          - http-referer
+          - http-rewrite
+          - http-ssi
+          - http-ssl
+          - http-stub-status
+          - http-userid
+          - select
+#    - application: php
+#      sapi: fpm
+#      version: 5.3.6
+#      paths:
+#          prefix: /usr/local/php
+#          bin: $(prefix)/bin
+#          conf: $(prefix)/etc/php.ini
+#          pid: $(prefix)/var/php-fpm.pid
+#          sbin: $(prefix)/sbin
+#      user: www-server
+#      group: www-server
+#      extensions:
+#          - gd
+#          - iconv
+#          - mysql
+#          - mysqli
+#          - pdo
+#          - pdo-mysql
+#          - pdo-sqlite
+#          - sqlite3
