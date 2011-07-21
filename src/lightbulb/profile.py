@@ -80,7 +80,7 @@ class Profile:
         #   My understanding is that str.join() should implicitly call str() on
         #   all non-string objects in a sequence, but this doesn't seem to be
         #   the case. For now, this Very Ugly Thing seems to fix it.
-        str_repr = '\n\n'.join(str(c) for c in self.components)
+        str_repr = "\n\n".join(str(c) for c in self.components)
 
         return "Profile: %s\nDescription: %s\n\n%s" %(
           self.name, self.description, str_repr)

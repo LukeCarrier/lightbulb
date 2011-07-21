@@ -38,7 +38,7 @@ def init_subparser(subparser):
       "-d",
       "--work-dir",
       help    = "working directory",
-      nargs   = '?',
+      nargs   = "?",
       default = None,
       dest    = "work_dir"
     )
@@ -48,7 +48,7 @@ def init_subparser(subparser):
       "-e",
       "--erase-work-dir",
       help    = "erase the working directory when the build is complete",
-      nargs   = '?',
+      nargs   = "?",
       default = "true",
       dest    = "erase_work_dir"
     )
@@ -58,7 +58,7 @@ def init_subparser(subparser):
       "-l",
       "--log-level",
       help    = "minimum level of messages to be included in the log",
-      nargs   = '?',
+      nargs   = "?",
       default = "info",
       choices = ["debug", "info", "warning", "error", "critical"],
       dest    = "log_level"
