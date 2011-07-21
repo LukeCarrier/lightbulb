@@ -5,7 +5,7 @@ metadata:
                  PHP with the FastCGI Process Manager.
 components:
     - application: nginx
-      version: 1.0.4
+      version: 1.0.5
       paths:
           prefix: /usr/local/nginx
           # All other paths are the defaults - check /src/applications/nginx/py
