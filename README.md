@@ -24,4 +24,4 @@ Basic usage
 
 Just a demo of the basic functionality I've implemented so far (building nginx, that's all):
 
-  python3.2 src/__init__.py build -p support/profiles/example-nginx-phpfpm.yaml
+    python3.2 src/__init__.py build -p support/profiles/example-nginx-phpfpm.yaml
