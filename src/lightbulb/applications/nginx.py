@@ -22,7 +22,7 @@ from lightbulb.systemspecific.packagemanagers import pkg_mgr
 #
 #   All of this magic takes place in ComponentProfile._init_paths(), itself a
 #   helper of __init__().
-default_paths = {
+paths = {
     "prefix"    : ("--prefix", None,),
     "conf"      : ("--conf-path", "etc/nginx.conf",),
     "lock"      : ("--lock-path", "var/nginx.lock",),
@@ -79,7 +79,7 @@ modules = {
 }
 
 # The %s im this should be replaced with the version number
-url_format = "http://nginx.org/download/nginx-%s.tar.gz"
+source_url_format = "http://nginx.org/download/nginx-%s.tar.gz"
 
 versions = (
     "0.5.38",
@@ -118,7 +118,7 @@ class ComponentBuilder:
         self._pkg_filter = pkg_filter
         self._pkg_mgr    = pkg_mgr
 
-        self._source     = url_format %(self._profile.version)
+        self._source_url     = source_url_format %(self._profile.version)
         self._target     = "%s/nginx-%s.tar.gz" %(self._work_dir,
           self._profile.version)
         self._source_dir = "%s/nginx-%s" %(self._work_dir,
@@ -153,7 +153,7 @@ class ComponentBuilder:
         self._logger.info("Downloading nginx source code")
 
         with open(self._target, "wb") as t:
-            apphelpers.Download.download(self._source, t)
+            apphelpers.Download.download(self._source_url, t)
 
         # Since our download dotter method doesn't output a new line on its
         # final run (it can't, it has no way of knowing it's being called for
@@ -182,9 +182,9 @@ class ComponentBuilder:
         configure_opts = ["./configure"]
 
         # Make sure we get those paths
-        for (key, value) in default_paths.items():
+        for (key, value) in paths.items():
             configure_opts.append("%s=%s" %(
-              default_paths[key][0], self._profile.paths[key]))
+              paths[key][0], self._profile.paths[key]))
 
         # Disable all modules by default
         for module in modules.items():
@@ -307,11 +307,11 @@ class ComponentProfile:
         Grab the paths specified in the profile and store them.
         """
 
-        for (key, value) in default_paths.items():
+        for (key, value) in paths.items():
             try:
                 raw = self.raw["paths"][key]
             except KeyError:
-                raw = default_paths[key][1]
+                raw = paths[key][1]
 
             if not raw.startswith("/"):
                 if key == "prefix":
