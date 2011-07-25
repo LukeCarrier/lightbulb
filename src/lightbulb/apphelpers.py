@@ -19,7 +19,6 @@ class Download:
         Download a file.
         """
 
-        file     = urllib.request.urlopen(source)
         chunk_id = 0
 
         # We have to set this here because otherwise we'll get a NameError,
@@ -28,16 +27,18 @@ class Download:
         if chunk_callback == None:
             chunk_callback = Download._default_download_chunk_callback
 
-        while True:
+        with urllib.request.urlopen(source) as file:
 
-            chunk = file.read(chunk_size)
-            if not chunk:
-                break
+            while True:
 
-            target.write(chunk)
+                chunk = file.read(chunk_size)
+                if not chunk:
+                    break
 
-            chunk_callback(chunk_id, chunk_size)
-            chunk_id += 1
+                target.write(chunk)
+
+                chunk_callback(chunk_id, chunk_size)
+                chunk_id += 1
 
     def _default_download_chunk_callback(chunk_id, chunk_size):
         """
