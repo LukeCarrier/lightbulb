@@ -14,6 +14,7 @@ Requirements
 ------------
 
 * CentOS/RHEL 5+, more coming soon
+* [Elevator](http://github.com/LukeCarrier/elevator) for permission elevation
 * Python 3.x, preferably 3.2.1, I'll extend support soon
 * PyYAML, required for profile parsing (available in PyPI as PyYAML)
 * Working tarfile module (compile with zlib-devel package and zlib enabled in /Modules/Setup)
