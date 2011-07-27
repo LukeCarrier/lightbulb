@@ -8,7 +8,7 @@ components:
       version: 1.0.5
       paths:
           prefix: /usr/local/nginx
-          # All other paths are the defaults - check /src/applications/nginx/py
+          # All other paths are the defaults - check /src/applications/nginx.py
           # for the gory details
       user: www-server
       group: www-server
